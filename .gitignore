@@ -1,0 +1,51 @@
+Django-specific ignore patterns
+------------------------------------
+Virtual environment directory
+venv/
+env/
+.venv/
+
+Local development database file
+db.sqlite3
+
+Python-specific ignore patterns
+------------------------------------
+Byte-compiled files
+*.pyc
+pycache/
+
+Distribution and packaging files
+dist/
+build/
+*.egg-info/
+
+Secret and configuration files
+These should NEVER be committed to version control
+.env
+.env.local
+.secret
+settings_local.py
+
+Media and static files
+These are often user-uploaded or generated and should not be in Git
+media/
+staticfiles/
+
+IDE and OS-specific files
+------------------------------------
+VS Code
+.vscode/
+
+PyCharm / IntelliJ
+.idea/
+
+macOS
+.DS_Store
+
+Windows
+Thumbs.db
+*.suo
+
+Common log and temporary files
+*.log
+*.sqlite
