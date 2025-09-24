@@ -20,5 +20,6 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/logger', include('key_logger.urls')),
-    path('api/reddit/', include('reddit.urls'))
+    path('api/reddit/', include('reddit.urls')),
+    path('api/fiverr/', include('fiverrAppTracker.urls'))
 ]

