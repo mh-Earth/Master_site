@@ -32,3 +32,16 @@ def is_client_disconnected(request,slug:str):
     if request.method == 'GET':
         order = Orders.objects.filter(slug=slug).first()
         return JsonResponse({"disconnect":f"{order.disconnect_connection}"}, safe=False)
+
+
+@csrf_exempt 
+def info(request,slug:str):
+    if request.method == 'GET':
+        order = Orders.objects.filter(slug=slug).first()
+        print(order.disconnect_connection)
+        return JsonResponse({
+            "isPaid":order.isPaid,
+            "isBlocked":order.isBlocked,
+            "disconnect":order.disconnect_connection
+            }, safe=False)
+    

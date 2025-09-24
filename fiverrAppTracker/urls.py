@@ -7,4 +7,5 @@ urlpatterns = [
     path('<str:slug>/isPaid', views.is_order_paid , name='is_order_paid'),
     path('<str:slug>/isblocked', views.is_app_blocked , name='is_app_blocked'),
     path('<str:slug>/isDisconnect', views.is_client_disconnected , name='is_client_disconnected'),
+    path('<str:slug>/info', views.info , name='info'),
 ]
